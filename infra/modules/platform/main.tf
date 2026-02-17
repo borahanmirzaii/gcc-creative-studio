@@ -118,8 +118,9 @@ module "backend_service" {
   memory = var.be_memory
   build_substitutions   = merge(var.be_build_substitutions,
     {
-      _REGION = var.gcp_region
+      _REGION      = var.gcp_region
       _SERVICE_NAME = var.backend_service_name
+      _IMAGE_TAG    = "$${SHORT_SHA}" # Cloud Build expands at trigger time; manual builds use default
     }
   )
 

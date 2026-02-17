@@ -46,6 +46,13 @@ terraform plan -var-file=dev-infra.tfvars
 terraform apply -var-file=dev-infra.tfvars
 ```
 
+### Deploy to production (from repo root)
+```bash
+./scripts/deploy-backend.sh   # Cloud Run
+./scripts/deploy-frontend.sh  # Firebase Hosting (uses Cloud Build for correct config)
+```
+See `docs/DEPLOY.md` for details. **Do not** use `pnpm run build` + `firebase deploy` — that bakes in localhost.
+
 ## Architecture
 
 ### Frontend: Angular 18 + Material + Tailwind
