@@ -1,0 +1,4 @@
+# Creative Studio Frontend - Node & pnpm versions (matches Docker node:20-alpine)
+[tools]
+node = "20"
+pnpm = "9.15.4"

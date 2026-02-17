@@ -1,6 +1,7 @@
 {
   "name": "creative-studio",
   "version": "0.0.0",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration development",

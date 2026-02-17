@@ -14,11 +14,13 @@
 
 FROM node:20-alpine AS builder
 
+RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
+
 WORKDIR /app
 COPY . /app/
 
-RUN npm ci
-RUN npm run build-dev
+RUN pnpm install --frozen-lockfile
+RUN pnpm run build-dev
 
 FROM nginx:alpine
 COPY --from=builder /app/dist/creative-studio/browser /usr/share/nginx/html

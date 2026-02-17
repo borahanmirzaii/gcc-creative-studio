@@ -2,6 +2,6 @@
 # See `gcloud topic gcloudignore` for more details.
 # By creating this file, we override the default behavior which ignores the 'dist' directory.
 
-# We don't need to send node_modules, the deployment build will run `npm ci`.
+# We don't need to send node_modules, the deployment build will run `pnpm install --frozen-lockfile`.
 node_modules/
 .git/
