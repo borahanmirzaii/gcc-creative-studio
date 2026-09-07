@@ -72,8 +72,11 @@ PROJECT_ID=my-project FIREBASE_SITE_ID=my-site ./scripts/deploy-frontend.sh
 gcloud builds submit . \
   --config=frontend/cloudbuild-deploy.yaml \
   --project=mbaneshi-cstudio-2025 \
+  --service-account=projects/mbaneshi-cstudio-2025/serviceAccounts/cs-fe-development-trig@mbaneshi-cstudio-2025.iam.gserviceaccount.com \
   --substitutions=_BACKEND_URL=https://mbaneshi-cstudio-2025.web.app,_BACKEND_SERVICE_ID=cstudio-be,_FIREBASE_SITE_ID=mbaneshi-cstudio-2025,_FE_SERVICE_NAME=cstudio-fe
 ```
+
+**Note:** `--service-account` is required for manual submits so the build uses the trigger SA, which has Secret Manager access. The default Cloud Build SA may not have access.
 
 ---
 

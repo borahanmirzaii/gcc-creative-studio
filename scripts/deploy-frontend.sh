@@ -33,9 +33,13 @@ echo ""
 
 cd "$REPO_ROOT"
 
+# Use trigger SA which has Secret Manager access (default Cloud Build SA may not)
+FE_TRIGGER_SA="cs-fe-development-trig@${PROJECT_ID}.iam.gserviceaccount.com"
+
 gcloud builds submit . \
   --config=frontend/cloudbuild-deploy.yaml \
   --project="$PROJECT_ID" \
+  --service-account="projects/${PROJECT_ID}/serviceAccounts/${FE_TRIGGER_SA}" \
   --substitutions="_BACKEND_URL=$FRONTEND_URL,_BACKEND_SERVICE_ID=$BACKEND_SERVICE,_FIREBASE_SITE_ID=$FIREBASE_SITE_ID,_FE_SERVICE_NAME=cstudio-fe"
 
 echo ""
